@@ -9,7 +9,7 @@ cask "ip-calc" do
   desc "Offline IPv4/IPv6 subnet calculator in a Spotlight-style panel"
   homepage "https://github.com/__GITHUB_REPO__"
 
-  depends_on macos: ">= :tahoe"
+  depends_on macos: :tahoe
 
   app "IP Calc.app"
 

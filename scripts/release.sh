@@ -57,7 +57,8 @@ echo "Archive: $ZIP"
 echo "SHA-256: $SHA256"
 
 if [[ -n "${GITHUB_REPO:-}" ]]; then
-    sed -e "s|__VERSION__|$VERSION|" -e "s|__SHA256__|$SHA256|" -e "s|__GITHUB_REPO__|$GITHUB_REPO|g" \
-        packaging/ip-calc.rb > build/ip-calc.rb
+    # Drop the template's header comment, which only applies to this repository.
+    sed -e '1,/^cask /{/^#/d;}' -e "s|__VERSION__|$VERSION|" -e "s|__SHA256__|$SHA256|" \
+        -e "s|__GITHUB_REPO__|$GITHUB_REPO|g" packaging/ip-calc.rb > build/ip-calc.rb
     echo "Cask:    build/ip-calc.rb (copy to Casks/ in the tap repository)"
 fi
